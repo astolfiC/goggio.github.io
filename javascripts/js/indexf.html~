@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>plasm-boilerplate</title>
+  <link rel="stylesheet" href="./build/build.css">
+</head>
+<body>
+
+  <section>
+    <div id="plasm"></div>
+  </section>
+
+  <script src="./build/build.js"></script>
+  <script src="../js/jquery-1.10.1.js"></script>
+  <script>
+    var PLASM = require('cvdlab-plasm-fun');
+    PLASM('plasm').globalize();
+  </script>
+  <script>
+$(document).ready(function(){
+	
+	function bezier_surface (controlpoints,dim,domain) {
+	var curve = BEZIER(dim)(controlpoints);
+	var mapping = ROTATIONAL_SURFACE(curve);
+	return MAP(mapping)(domain);
+}
+
+function tube(r,h){
+	var domaint = DOMAIN([[0,1],[0,2*PI]])([16,16]);
+	var tube = CYL_SURFACE([r,h])(16);
+	var basetmp = BEZIER(S0)([[r,0,0],[r,0,0],[0,0,0]]);
+	var mappingbase = ROTATIONAL_SURFACE(basetmp);
+	var base = MAP(mappingbase)(domaint)
+	var baset = T([2])([h])(base);
+	return STRUCT([tube,base,baset]);
+}
+
+
+
+var domain = DOMAIN([[0,1],[0,2*PI]])([32,32]);
+
+
+var c0 = [[0.25,0,10],[0.5,0,9.75],[0.75,0,9.5]];
+var c1 = [[0.75,0,9.5],[0.5,0,9],[1.25,0,8.5]];
+var c2 = [[1.25,0,8.5],[0.5,0,7.75],[1,0,7]];
+var c3 = [[1,0,7],[0.5,0,6],[1.25,0,5]];
+var c4 = [[1.25,0,5],[0.5,0,4.25],[1,0,3.5]];
+var c5 = [[1,0,3.5],[0.5,0,3],[1,0,2.5]];
+var c6 = [[1,0,2.5],[0.5,0,1.25],[1,0,0]];
+
+var curve0 = bezier_surface(c0,S0,domain);
+var curve1 = COLOR([255,255,255])(bezier_surface(c1,S0,domain));
+var curve2 = COLOR([255,255,255])(bezier_surface(c2,S0,domain));
+var curve3 = COLOR([255,255,255])(bezier_surface(c3,S0,domain));
+var curve4 = COLOR([255,255,255])(bezier_surface(c4,S0,domain));
+var curve5 = COLOR([255,255,255])(bezier_surface(c5,S0,domain));
+var curve6 = COLOR([255,255,255])(bezier_surface(c6,S0,domain));
+
+var circle1 = COLOR([(210/255),(210/255),(210/255)])(T([2])([9.5])(bezier_surface([[0.77,0,0],[0.75,0,0]],S0,domain)));
+var circle2 = COLOR([(210/255),(210/255),(210/255)])(T([2])([8.5])(bezier_surface([[1.27,0,0],[1.25,0,0]],S0,domain)));
+var circle3 = COLOR([(210/255),(210/255),(210/255)])(T([2])([7])(bezier_surface([[1.02,0,0],[1,0,0]],S0,domain)));
+var circle4 = COLOR([(210/255),(210/255),(210/255)])(T([2])([5])(bezier_surface([[1.27,0,0],[1.25,0,0]],S0,domain)));
+var circle5 = COLOR([(210/255),(210/255),(210/255)])(T([2])([3.5])(bezier_surface([[1.02,0,0],[1,0,0]],S0,domain)));
+var circle6 = COLOR([(210/255),(210/255),(210/255)])(T([2])([2.5])(bezier_surface([[1.02,0,0],[1,0,0]],S0,domain)));
+var circle7 = COLOR([(210/255),(210/255),(210/255)])(bezier_surface([[1.02,0,0],[1,0,0]],S0,domain));
+
+/*var circle1 = COLOR([(210/255),(210/255),(210/255)])(T([2])([9.5])(CIRCLE(0.75)(32)));
+var circle2 = COLOR([(210/255),(210/255),(210/255)])(T([2])([8.5])(CIRCLE(1.25)(32)));
+var circle3 = COLOR([(210/255),(210/255),(210/255)])(T([2])([7])(CIRCLE(1)(32)));
+var circle4 = COLOR([(210/255),(210/255),(210/255)])(T([2])([5])(CIRCLE(1.25)(32)));
+var circle5 = COLOR([(210/255),(210/255),(210/255)])(T([2])([3.5])(CIRCLE(1)(32)));
+var circle6 = COLOR([(210/255),(210/255),(210/255)])(T([2])([2.5])(CIRCLE(1)(32)));
+var circle7 = COLOR([(210/255),(210/255),(210/255)])(CIRCLE(1)(32));*/
+
+var tube1 = COLOR([(210/255),(210/255),(210/255)])(T([2])([10])(tube(0.25,0.5)));
+var tube2 = COLOR([(210/255),(210/255),(210/255)])(T([2])([10.5])(tube(0.05,3)));
+
+var circles = STRUCT([circle1,circle2,circle3,circle4,circle5,circle6,circle7]);
+var lamp = STRUCT([curve0,curve1,curve2,curve3,curve4,curve5,curve6,circles,tube1,tube2]);
+DRAW(lamp);
+
+  });
+</script>
+</body>
+</html>

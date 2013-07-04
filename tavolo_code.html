@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>plasm-boilerplate</title>
-  <link rel="stylesheet" href="./build/build.css">
-</head>
-<body>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>TACCIA - CODE</title>
+	</head>
 
-  <section>
-    <div id="plasm"></div>
-  </section>
+	<body>
 
-  <script src="./build/build.js"></script>
-  <script src="../js/jquery-1.10.1.js"></script>
-  <script>
-    var PLASM = require('cvdlab-plasm-fun');
-    PLASM('plasm').globalize();
-  </script>
-  <script>
-$(document).ready(function(){
-	
-/**
+		<div id="container">
+			<div class="inner">
+
+				<header>
+					<h1>TACCIA</h1>
+					<h2>CODE</h2>
+				</header>
+
+			<h3><a class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a><a href="./index.html">HOME</a> &nbsp;| &nbsp; <a href="./tavolo95.html">Description</a> &nbsp;-&nbsp; <a href="./tavolo_decomposition.html">Hierarchial Decomposition</a>&nbsp; -&nbsp; <a href="./tavolo_code.html">CODE</a></h3>
+
+				<hr>
+				<h3><a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>CODE</h3>
+				<pre><code>/**
  * @author Gianmarco De Blasio
  */
 // tavolo95
@@ -192,7 +199,16 @@ var leg4 = T([0,1])([13.37,0.6])(R([0,1])([-3*PI/4])(STRUCT([leg(),hinge()])));
 var model = STRUCT([leg1,leg2,leg3,leg4,board]);
 DRAW(model);
 
-  });
-</script>
-</body>
+</code></pre>									
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</body>
 </html>
